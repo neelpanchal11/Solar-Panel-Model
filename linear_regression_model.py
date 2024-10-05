@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 import datetime
 
 # import solar panel data for The Bronx, NY (full year of 2006) and split Date and Time into new columns
-df = pd.read_csv('/Users/tareq/solar_panel_model/ny-pv-2006/Actual_40.85_-73.85_2006_DPV_21MW_5_Min.csv')
+df = pd.read_csv('/Users/neel/solar_panel_model/ny-pv-2006/Actual_40.85_-73.85_2006_DPV_21MW_5_Min.csv')
 df['LocalTime'] = pd.to_datetime(df['LocalTime']) 
 df['Date'] = df['LocalTime'].dt.date
 df['Time'] = df['LocalTime'].dt.time
@@ -16,7 +16,7 @@ df['Time'] = df['LocalTime'].dt.time
 df2 = df.groupby('Date').sum('Power(MW)').reset_index()
 
 # import DataFrame of parsed weather features (TempF, TempK, Humidity, HrsDaylight) for the corresponding 365 days of 2006
-features_df = pd.read_csv('/Users/tareq/solar_panel_model/Bronx_Weather_2006.csv')
+features_df = pd.read_csv('/Users/neel/solar_panel_model/Bronx_Weather_2006.csv')
 
 # merge the two DataFrames including solar panel power and weather features and clean up the types
 merge_df = df2.merge(features_df,
